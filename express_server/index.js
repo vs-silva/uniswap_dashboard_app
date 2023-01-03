@@ -1,5 +1,5 @@
-const express = require('express');
-const history = require('connect-history-api-fallback');
+import express from 'express';
+import history from 'connect-history-api-fallback';
 
 const app = express();
 const port = process.env.PORT || 8080;
