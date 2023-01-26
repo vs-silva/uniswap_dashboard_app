@@ -21,6 +21,7 @@
     "react-router-dom": "^6.7.0"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@types/jsdom": "^20.0.1",
     "@types/react": "^18.0.26",
