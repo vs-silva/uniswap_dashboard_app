@@ -8,6 +8,6 @@ export function Router() {
     return ( <Routes>
         <Route path={RouterPaths.Home} element={<Home />}/>
         <Route path={RouterPaths.Tokens} element={<Tokens />}/>
-        <Route path={RouterPaths.AboutMe} element={<About />}/>
+        <Route path={RouterPaths.About} element={<About />}/>
     </Routes>);
 }

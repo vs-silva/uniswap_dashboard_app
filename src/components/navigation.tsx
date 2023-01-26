@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 
 export function Navigation(): JSX.Element {
 
-    return (<nav>
+    return (<nav className="flex space-x-2">
         {
             Object.entries(RouterPaths).map(([routeKey, routePath], index) => (
                 <Link to={routePath} key={index}>{routeKey}</Link>
