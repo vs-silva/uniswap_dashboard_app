@@ -10,7 +10,7 @@ describe('Tokens Tests', () => {
 
     describe('Tokens Driver Port Tests', () => {
 
-        it('getCryptoTokens should return an array of CryptoTokens objects ', async () => {
+        it('getCryptoTokens should return an array of CryptoTokens objects', async () => {
 
             const requestPayload = {
                 name:'',
@@ -22,6 +22,7 @@ describe('Tokens Tests', () => {
 
             const spy = vi.spyOn(Tokens, 'getCryptoTokens');
             const result = await Tokens.getCryptoTokens(requestPayload);
+
 
             expect(spy).toHaveBeenCalled();
             expect(spy).toHaveBeenCalledOnce();

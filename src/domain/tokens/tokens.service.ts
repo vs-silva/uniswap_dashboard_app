@@ -14,7 +14,7 @@ export function TokensService(reader: TokensDrivenPort): TokensDriverPort {
         const response = await reader.get(requestQuery);
 
         // @ts-ignore
-        return TokensMapperService.mapToCryptoTokenDTOCollection(response['tokens'])
+        return TokensMapperService.mapToCryptoTokenDTOCollection(response['tokens']);
     }
 
     return {
