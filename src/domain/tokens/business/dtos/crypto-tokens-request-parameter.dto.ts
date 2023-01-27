@@ -1,7 +1,7 @@
 export interface CryptoTokensRequestParameterDTO {
     name: string;
     orderBy: string;
-    orderDirection:string;
-    first: number;
+    orderDirection: string;
+    amount: number;
     skip: number;
 }
