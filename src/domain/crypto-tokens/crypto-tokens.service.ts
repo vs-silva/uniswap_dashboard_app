@@ -1,11 +1,11 @@
-import type {TokensDriverPort} from "./ports/tokens-driver.port";
-import type {TokensDrivenPort} from "./ports/tokens-driven.port";
+import type {CryptoTokensDriverPort} from "./ports/crypto-tokens-driver.port";
+import type {CryptoTokensDrivenPort} from "./ports/crypto-tokens-driven.port";
 import type {CryptoTokenDTO} from "./business/dtos/crypto-token.dto";
 import type {CryptoTokensRequestParameterDTO} from "./business/dtos/crypto-tokens-request-parameter.dto";
 import {RequestQueryService} from "./business/services/request-query/request-query.service";
-import {TokensMapperService} from "./business/services/tokens-mapper/tokens-mapper.service";
+import {CryptoTokensMapperService} from "./business/services/crypto-tokens-mapper/crypto-tokens-mapper.service";
 
-export function TokensService(reader: TokensDrivenPort): TokensDriverPort {
+export function CryptoTokensService(reader: CryptoTokensDrivenPort): CryptoTokensDriverPort {
 
     async function getCryptoTokens(requestParameters: CryptoTokensRequestParameterDTO): Promise<CryptoTokenDTO[]> {
 
@@ -14,7 +14,7 @@ export function TokensService(reader: TokensDrivenPort): TokensDriverPort {
         const response = await reader.get(requestQuery);
 
         // @ts-ignore
-        return TokensMapperService.mapToCryptoTokenDTOCollection(response['tokens']);
+        return CryptoTokensMapperService.mapToCryptoTokenDTOCollection(response['tokens']);
     }
 
     return {
