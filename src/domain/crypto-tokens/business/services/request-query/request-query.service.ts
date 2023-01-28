@@ -1,8 +1,8 @@
 import type {RequestQueryInterface} from "./request-query.interface";
 import type {CryptoTokensRequestParameterDTO} from "../../dtos/crypto-tokens-request-parameter.dto";
-import type {CryptoTokensRequestQueryDto} from "../../dtos/crypto-tokens-request-query.dto";
+import type {CryptoTokensRequestQueryDTO} from "../../dtos/crypto-tokens-request-query.dto";
 
-function generateRequestQuery(requestParameters: CryptoTokensRequestParameterDTO): CryptoTokensRequestQueryDto {
+function generateRequestQuery(requestParameters: CryptoTokensRequestParameterDTO): CryptoTokensRequestQueryDTO {
 
     return {
         operationName: 'tokens',

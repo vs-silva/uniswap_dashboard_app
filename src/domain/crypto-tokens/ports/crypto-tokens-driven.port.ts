@@ -1,5 +1,5 @@
-import type {CryptoTokensRequestQueryDto} from "../business/dtos/crypto-tokens-request-query.dto";
+import type {CryptoTokensRequestQueryDTO} from "../business/dtos/crypto-tokens-request-query.dto";
 
 export interface CryptoTokensDrivenPort {
-    get(requestQuery: CryptoTokensRequestQueryDto): Promise<object>;
+    get(requestQuery: CryptoTokensRequestQueryDTO): Promise<object>;
 }
