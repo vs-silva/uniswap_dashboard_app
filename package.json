@@ -12,6 +12,7 @@
     "test:cov": "vitest run --coverage"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.2",
     "autoprefixer": "^10.4.13",
     "axios": "^1.2.5",
     "connect-history-api-fallback": "^2.0.0",
