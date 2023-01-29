@@ -2,10 +2,18 @@ import {useEffect, useState} from "react";
 import User from "../domain/user";
 import Eventbus from "../eventbus";
 import {EventTypesConstants} from "../eventbus/event-types.constants";
+import {UserDTO} from "../domain/user/business/dtos/user.dto";
 
 export function About(): JSX.Element {
 
-    const [user, setUser] = useState({});
+    const initialValue: UserDTO = {
+        id: 0,
+        name: '',
+        thumbImage: '',
+        bio: ''
+    };
+
+    const [user, setUser] = useState(initialValue);
 
     useEffect(() => {
 
@@ -16,6 +24,7 @@ export function About(): JSX.Element {
     }, []);
 
 
+    // @ts-ignore
     return (<div>
         <div className="flex justify-center">
             <div className="flex flex-col md:flex-row md:max-w-xl rounded-lg bg-white shadow-lg">
