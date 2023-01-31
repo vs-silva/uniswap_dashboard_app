@@ -1,10 +1,10 @@
 import {configureStore} from "@reduxjs/toolkit";
-import CryptoTokensStoreSlice from "./crypto-tokens-store.slice";
-
+import CryptoTokensSlice from "./crypto-tokens.slice";
 
 const store = configureStore({
     reducer: {
-        cryptoTokens: CryptoTokensStoreSlice
+        // @ts-ignore
+        cryptoTokens: CryptoTokensSlice.reducer
     }
 });
 
