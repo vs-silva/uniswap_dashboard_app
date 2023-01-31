@@ -24,7 +24,7 @@ export function Tokens(): JSX.Element {
     }, []);
 
     return (<div>
-        <TokenSelector/>
+        <TokenSelector tokens={tokens} />
         <TokenTable tokens={tokens}/>
     </div>);
 }

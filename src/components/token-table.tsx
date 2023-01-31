@@ -10,7 +10,7 @@ export function TokenTable(props: { tokens: any; }): JSX.Element {
     return (<div className="w-full max-w-2xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
 
         <header className="px-5 py-4 border-b border-gray-100">
-            <div className="font-semibold text-gray-800">Crypto Tokens</div>
+            <div className="font-semibold text-gray-800 text-center">Crypto Tokens</div>
         </header>
 
         <div className="overflow-x-auto p-3">
@@ -36,6 +36,7 @@ export function TokenTable(props: { tokens: any; }): JSX.Element {
                 </thead>
                 <tbody className="text-sm divide-y divide-gray-100">
                 {
+                    // @ts-ignore
                     tokens.map((token, index) => {
                         return(<tr id={token.id} key={index} className="ps-2">
 
