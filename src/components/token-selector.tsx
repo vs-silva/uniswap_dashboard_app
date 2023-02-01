@@ -8,8 +8,6 @@ export function TokenSelector(props: { tokens: any; }): JSX.Element {
         return(<></>);
     }
 
-    console.log('TokenSelector',tokens);
-
     return (<aside>
         <div className="mb-3 xl:w-96">
             <label

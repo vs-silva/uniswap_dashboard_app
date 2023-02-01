@@ -1,21 +1,28 @@
 import {TokenSelector} from "../components/token-selector";
 import {TokenTable} from "../components/token-table";
-import {useEffect, useState} from "react";
-import {TokensStore} from "../store/tokens-store";
-
+import {useDispatch, useSelector} from "react-redux";
+import {getTokens} from "../store/tokens-store-slice";
+import {useEffect} from "react";
 
 export function Tokens(): JSX.Element {
 
-    const tokenStore = TokensStore(useState, useEffect);
+    const dispatch = useDispatch();
 
-    tokenStore.getTokens().then(void(0));
+    // @ts-ignore
+    const { tokensRequestPayload, filteredTokens } = useSelector(state => state.tokenStoreSlice);
+
+    useEffect(() => {
+        // @ts-ignore
+        dispatch(getTokens(tokensRequestPayload))
+    },[]);
 
 
-    console.log(tokenStore);
+
+
+
 
     return (<div>
-        <TokenSelector tokens={tokenStore.tokens} />
-        <TokenTable tokens={tokenStore.tokens}/>
-        {JSON.stringify(tokenStore.tokens)}
+        <TokenSelector tokens={filteredTokens} />
+        <TokenTable tokens={filteredTokens}/>
     </div>);
 }
