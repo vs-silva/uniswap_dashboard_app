@@ -1,4 +1,4 @@
-export const TokenRequestedFieldsConstants = Object.freeze({
+export const CryptoTokensRequestedFieldsConstants = Object.freeze({
     ID: 'id',
     NAME: 'name',
     SYMBOL: 'symbol',
