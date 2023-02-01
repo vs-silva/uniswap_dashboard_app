@@ -1,8 +1,11 @@
-import type {CryptoTokenDTO} from "../domain/crypto-tokens/business/dtos/crypto-token.dto";
+import Eventbus from "../eventbus";
+import {EventTypesConstants} from "../eventbus/event-types.constants";
+import {TokensOptionalRequestPayloadDTO} from "../store/tokens-store-slice/dtos/tokens-optional-request-payload.dto";
 
 export function TokenSelector(props: { tokens: any; }): JSX.Element {
 
     const {tokens} = props;
+    const optionalRequestPayloadDTO :TokensOptionalRequestPayloadDTO = {};
 
     if(!tokens.length) {
         return(<></>);
@@ -17,12 +20,16 @@ export function TokenSelector(props: { tokens: any; }): JSX.Element {
             >
             <input
                 type="text"
+                onChange={(event) => {
+                    optionalRequestPayloadDTO.name = event.target.value;
+                    Eventbus.emit(EventTypesConstants.FILTER_TOKENS_DATA, optionalRequestPayloadDTO)
+                }}
                 className="form-control block w-full px-2 py-1
           text-sm font-normal text-gray-700 bg-white bg-clip-padding
           border border-solid border-gray-300 rounded transition ease-in-out m-0
           focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 id="exampleFormControlInput4"
-                placeholder="Form control sm"
+                placeholder="filter tokens"
             />
         </div>
 
