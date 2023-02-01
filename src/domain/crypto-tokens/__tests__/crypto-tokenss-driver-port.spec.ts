@@ -1,14 +1,14 @@
 import {describe, it, vi, expect} from "vitest";
-import Tokens from "../index";
+import CryptoTokens from "../index";
 import {OrderDirectionConstant} from "../business/constants/order-direction.constant";
 import {OrderByConstants} from "../business/constants/order-by.constants";
 import {CryptoTokenDTO} from "../business/dtos/crypto-token.dto";
 
-describe('Tokens Tests', () => {
+describe('Crypto-Tokens Tests', () => {
 
     const timeout:number = 60 * 1000;
 
-    describe('Tokens Driver Port Tests', () => {
+    describe('Crypto-Tokens Driver Port Tests', () => {
 
         it('getCryptoTokens should return an array of CryptoTokens objects', async () => {
 
@@ -20,8 +20,8 @@ describe('Tokens Tests', () => {
                 skip: 0
             };
 
-            const spy = vi.spyOn(Tokens, 'getCryptoTokens');
-            const result = await Tokens.getCryptoTokens(requestPayload);
+            const spy = vi.spyOn(CryptoTokens, 'getCryptoTokens');
+            const result = await CryptoTokens.getCryptoTokens(requestPayload);
 
 
             expect(spy).toHaveBeenCalled();
