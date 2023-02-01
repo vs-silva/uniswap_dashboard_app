@@ -33,6 +33,6 @@ export function Tokens(): JSX.Element {
     return (<div>
         <TokenSelector tokens={filteredTokens} />
         <TokenTable tokens={filteredTokens}/>
-        {JSON.stringify(filteredTokens[0])}
+        {JSON.stringify(filteredTokens)}
     </div>);
 }

@@ -35,6 +35,7 @@ function builderProcessor(builder) {
     });
 }
 
+// @ts-ignore
 function updateFilteredTokens(state, action: PayloadAction<TokensOptionalRequestPayloadDTO>) {
     // @ts-ignore
     state.filteredTokens = state.tokens.filter(token => token.name.toLowerCase().includes(action.payload.name.toLowerCase()));
