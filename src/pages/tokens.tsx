@@ -1,30 +1,21 @@
-import {useDispatch, useSelector} from "react-redux";
-import {getTokens, updateTokensRequestPayload} from '../store/crypto-tokens.slice';
-import {useEffect} from "react";
-import store from "../store";
 import {TokenSelector} from "../components/token-selector";
 import {TokenTable} from "../components/token-table";
+import {useEffect, useState} from "react";
+import {TokensStore} from "../store/tokens-store";
+
 
 export function Tokens(): JSX.Element {
 
-    const dispatch = useDispatch();
+    const tokenStore = TokensStore(useState, useEffect);
 
-    // @ts-ignore
-    const {tokens, tokensRequestPayload} = useSelector(state => state.cryptoTokens);
+    tokenStore.getTokens().then(void(0));
 
-    useEffect(() => {
-        // @ts-ignore
-        dispatch(updateTokensRequestPayload())
-            .then(() => {
-                const {tokensRequestPayload} = store.getState().cryptoTokens;
-                // @ts-ignore
-                dispatch(getTokens(tokensRequestPayload))
-            });
 
-    }, []);
+    console.log(tokenStore);
 
     return (<div>
-        <TokenSelector tokens={tokens} />
-        <TokenTable tokens={tokens}/>
+        <TokenSelector tokens={tokenStore.tokens} />
+        <TokenTable tokens={tokenStore.tokens}/>
+        {JSON.stringify(tokenStore.tokens)}
     </div>);
 }
