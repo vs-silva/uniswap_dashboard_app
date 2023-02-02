@@ -2,18 +2,18 @@ import {TokensOptionalRequestPayloadDTO} from "../store/tokens-store-slice/dtos/
 import Eventbus from "../eventbus";
 import {EventTypesConstants} from "../eventbus/event-types.constants";
 
-export function TokenSearchInput(): JSX.Element {
+export function TokenNameSearchInput(): JSX.Element {
 
     const optionalRequestPayloadDTO :TokensOptionalRequestPayloadDTO = {};
 
     return (
         <div className="mb-3 xl:w-96">
 
-        <label htmlFor="tokensSearchNameInput" className="form-label inline-block mb-2 text-gray-700 text-sm"
+        <label htmlFor="tokensNameSearchInput" className="form-label inline-block mb-2 text-gray-700 text-sm"
         >Search Tokens</label>
 
         <input
-          id="tokensSearchNameInput"
+          id="tokensNameSearchInput"
           placeholder="search token by name"
           type="text"
           onChange={(event) => {

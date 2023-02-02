@@ -1,10 +1,12 @@
-import {TokenSearchInput} from "./token-search-input";
+import {TokenNameSearchInput} from "./token-name-search-input";
+import {TokenAmountSearchInput} from "./token-amount-search-input";
 
 export function TokenSearch(): JSX.Element {
 
     return (
         <div>
-            <TokenSearchInput />
+            <TokenNameSearchInput />
+            <TokenAmountSearchInput />
         </div>
     );
 }
