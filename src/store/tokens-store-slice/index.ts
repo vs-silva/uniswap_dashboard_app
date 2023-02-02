@@ -16,7 +16,7 @@ const initialState: object = {
         skip: 0
     },
     tokens: <CryptoTokenDTO[]>[],
-    filteredTokens: <CryptoTokenDTO[]>[]
+    filteredTokens: <CryptoTokenDTO[]>[],
 };
 
 export const getTokens = createAsyncThunk(
@@ -38,15 +38,28 @@ function builderProcessor(builder) {
 // @ts-ignore
 function updateFilteredTokens(state, action: PayloadAction<TokensOptionalRequestPayloadDTO>) {
     // @ts-ignore
-    state.filteredTokens = state.tokens.filter(token => token.name.toLowerCase().includes(action.payload.name.toLowerCase()));
+    state.filteredTokens = state.tokens.filter((token:CryptoTokenDTO) => token.name.toLowerCase().includes(action.payload.name.toLowerCase()));
 }
+
+// @ts-ignore
+function selectSpecificToken(state, action:  PayloadAction<string>) {
+    state.filteredTokens = state.tokens.filter((token:CryptoTokenDTO) => token.id === action.payload);
+}
+
+// @ts-ignore
+function restoreFilteredTokens(state) {
+    state.filteredTokens = state.tokens;
+}
+
 
 
 export default createSlice({
     name: 'tokens-store-slice',
     initialState,
     reducers: {
-        updateFilteredTokens
+        updateFilteredTokens,
+        selectSpecificToken,
+        restoreFilteredTokens
     },
     extraReducers: builderProcessor
 });
