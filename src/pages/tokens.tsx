@@ -5,6 +5,7 @@ import TokensStoreSlice, {getTokens} from "../store/tokens-store-slice";
 import {useEffect} from "react";
 import Eventbus from "../eventbus";
 import {EventTypesConstants} from "../eventbus/event-types.constants";
+import {TokenSearch} from "../components/token-search";
 
 export function Tokens(): JSX.Element {
 
@@ -40,19 +41,28 @@ export function Tokens(): JSX.Element {
 
 
 
-    return (<div className="grid grid-rows-3 grid-flow-col gap-4">
-        <aside className="row-span-3">
-            <TokenSelector tokens={filteredTokens} />
-        </aside>
+    return (
+        <div>
 
-        <section>
-            <div className="col-span-2">2</div>
-        </section>
+            <section>
+                <TokenSearch />
+            </section>
 
-        <section className="row-span-2 col-span-2">
-            <TokenTable tokens={filteredTokens}/>
-        </section>
+            <div className="grid grid-rows-3 grid-flow-col gap-4">
 
+                <aside className="row-span-3">
+                    <TokenSelector tokens={filteredTokens} />
+                </aside>
+
+                <section>
+                    <div className="col-span-2">2</div>
+                </section>
+
+                <section className="row-span-2 col-span-2">
+                    <TokenTable tokens={filteredTokens}/>
+                </section>
+
+            </div>
 
     </div>);
 }
