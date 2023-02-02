@@ -51,6 +51,12 @@ function restoreFilteredTokens(state) {
     state.filteredTokens = state.tokens;
 }
 
+// @ts-ignore
+function updateTokensSearchRequest(state, action: PayloadAction<TokensOptionalRequestPayloadDTO>) {
+    const target = {};
+    state.tokensRequestPayload = Object.assign(target, state.tokensRequestPayload, action.payload);
+}
+
 
 
 export default createSlice({
@@ -59,7 +65,8 @@ export default createSlice({
     reducers: {
         updateFilteredTokens,
         selectSpecificToken,
-        restoreFilteredTokens
+        restoreFilteredTokens,
+        updateTokensSearchRequest
     },
     extraReducers: builderProcessor
 });

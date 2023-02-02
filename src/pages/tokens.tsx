@@ -13,7 +13,13 @@ export function Tokens(): JSX.Element {
 
     // @ts-ignore
     const { tokensRequestPayload, filteredTokens } = useSelector(state => state.tokenStoreSlice);
-    const { updateFilteredTokens, selectSpecificToken, restoreFilteredTokens } = TokensStoreSlice.actions;
+
+    const {
+        updateFilteredTokens,
+        selectSpecificToken,
+        restoreFilteredTokens,
+        updateTokensSearchRequest
+    } = TokensStoreSlice.actions;
 
     useEffect(() => {
         // @ts-ignore
@@ -36,6 +42,11 @@ export function Tokens(): JSX.Element {
         dispatch(restoreFilteredTokens());
     });
 
+    // @ts-ignore
+    Eventbus.on(EventTypesConstants.UPDATE_TOKEN_SEARCH_REQUEST, (payload) => {
+        // @ts-ignore
+        dispatch(updateTokensSearchRequest(payload));
+    });
 
 
 
