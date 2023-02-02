@@ -16,7 +16,7 @@ const initialState: object = {
         skip: 0
     },
     tokens: <CryptoTokenDTO[]>[],
-    filteredTokens: <CryptoTokenDTO[]>[],
+    filteredTokens: <CryptoTokenDTO[]>[]
 };
 
 export const getTokens = createAsyncThunk(
