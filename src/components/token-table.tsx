@@ -7,7 +7,7 @@ export function TokenTable(props: { tokens: any; }): JSX.Element {
         return(<></>);
     }
 
-    return (<div className="w-full max-w-2xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
+    return (<div className="w-full  mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
 
         <header className="px-5 py-4 border-b border-gray-100">
             <div className="font-semibold text-gray-800 text-center">Crypto Tokens</div>

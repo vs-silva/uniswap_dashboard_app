@@ -6,7 +6,8 @@ export function TokenSelectorInput(): JSX.Element {
 
     const optionalRequestPayloadDTO :TokensOptionalRequestPayloadDTO = {};
 
-    return (<div className="mb-3 xl:w-96">
+    return (
+        <div className="mb-3 xl:w-96">
         <label htmlFor="tokensFilterInput" className="form-label inline-block mb-2 text-gray-700 text-sm"
         >Filter Tokens</label>
 

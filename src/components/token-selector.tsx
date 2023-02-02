@@ -8,14 +8,14 @@ export function TokenSelector(props: { tokens: CryptoTokenDTO[]; }): JSX.Element
 
     if(!tokens.length) {
         return(
-            <aside>
+            <div>
                 <TokenSelectorInput />
-            </aside>
+            </div>
         );
     }
 
-    return (<aside>
+    return (<div>
         <TokenSelectorInput />
         <TokenSelectorList tokens={tokens}/>
-    </aside>);
+    </div>);
 }
