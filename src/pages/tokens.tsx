@@ -5,7 +5,6 @@ import TokensStoreSlice, {getTokens} from "../store/tokens-store-slice";
 import {useEffect} from "react";
 import Eventbus from "../eventbus";
 import {EventTypesConstants} from "../eventbus/event-types.constants";
-import type {TokensOptionalRequestPayloadDTO} from "../store/tokens-store-slice/dtos/tokens-optional-request-payload.dto";
 
 export function Tokens(): JSX.Element {
 
@@ -13,7 +12,7 @@ export function Tokens(): JSX.Element {
 
     // @ts-ignore
     const { tokensRequestPayload, filteredTokens } = useSelector(state => state.tokenStoreSlice);
-    const { updateFilteredTokens } = TokensStoreSlice.actions;
+    const { updateFilteredTokens, selectSpecificToken, restoreFilteredTokens } = TokensStoreSlice.actions;
 
     useEffect(() => {
         // @ts-ignore
@@ -21,8 +20,19 @@ export function Tokens(): JSX.Element {
     },[]);
 
     // @ts-ignore
-    Eventbus.on(EventTypesConstants.FILTER_TOKENS_DATA, (payload: TokensOptionalRequestPayloadDTO) => {
+    Eventbus.on(EventTypesConstants.FILTER_TOKENS_DATA, (payload) => {
+        // @ts-ignore
         dispatch(updateFilteredTokens(payload));
+    });
+
+    // @ts-ignore
+    Eventbus.on(EventTypesConstants.SELECT_TOKEN_DATA, (payload: string) => {
+        dispatch(selectSpecificToken(payload));
+    });
+
+    // @ts-ignore
+    Eventbus.on(EventTypesConstants.UNSELECT_TOKEN_DATA, () => {
+        dispatch(restoreFilteredTokens());
     });
 
 
@@ -30,9 +40,19 @@ export function Tokens(): JSX.Element {
 
 
 
-    return (<div>
-        <TokenSelector tokens={filteredTokens} />
-        <TokenTable tokens={filteredTokens}/>
-        {JSON.stringify(filteredTokens)}
+    return (<div className="grid grid-rows-3 grid-flow-col gap-4">
+        <aside className="row-span-3">
+            <TokenSelector tokens={filteredTokens} />
+        </aside>
+
+        <section>
+            <div className="col-span-2">2</div>
+        </section>
+
+        <section className="row-span-2 col-span-2">
+            <TokenTable tokens={filteredTokens}/>
+        </section>
+
+
     </div>);
 }
