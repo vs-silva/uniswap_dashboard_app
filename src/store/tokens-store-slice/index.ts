@@ -5,6 +5,8 @@ import CryptoTokens from "../../domain/crypto-tokens";
 import {OrderByConstants} from "../../domain/crypto-tokens/business/constants/order-by.constants";
 import {OrderDirectionConstant} from "../../domain/crypto-tokens/business/constants/order-direction.constant";
 import {TokensOptionalRequestPayloadDTO} from "./dtos/tokens-optional-request-payload.dto";
+import Graph from "../../domain/graph";
+import {GraphTypeConstants} from "../../domain/graph/business/constants/graph-type.constants";
 
 
 const initialState: object = {
@@ -36,27 +38,26 @@ function builderProcessor(builder) {
 }
 
 // @ts-ignore
-function updateFilteredTokens(state, action: PayloadAction<TokensOptionalRequestPayloadDTO>) {
+function updateFilteredTokens(state, action: PayloadAction<TokensOptionalRequestPayloadDTO>):void {
     // @ts-ignore
     state.filteredTokens = state.tokens.filter((token:CryptoTokenDTO) => token.name.toLowerCase().includes(action.payload.name.toLowerCase()));
 }
 
 // @ts-ignore
-function selectSpecificToken(state, action:  PayloadAction<string>) {
+function selectSpecificToken(state, action:  PayloadAction<string>):void {
     state.filteredTokens = state.tokens.filter((token:CryptoTokenDTO) => token.id === action.payload);
 }
 
 // @ts-ignore
-function restoreFilteredTokens(state) {
+function restoreFilteredTokens(state):void {
     state.filteredTokens = state.tokens;
 }
 
 // @ts-ignore
-function updateTokensSearchRequest(state, action: PayloadAction<TokensOptionalRequestPayloadDTO>) {
+function updateTokensSearchRequest(state, action: PayloadAction<TokensOptionalRequestPayloadDTO>):void {
     const target = {};
     state.tokensRequestPayload = Object.assign(target, state.tokensRequestPayload, action.payload);
 }
-
 
 
 export default createSlice({

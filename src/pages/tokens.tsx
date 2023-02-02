@@ -49,6 +49,7 @@ export function Tokens(): JSX.Element {
         dispatch(updateTokensSearchRequest(payload));
     });
 
+
     return (
         <div>
 
@@ -64,7 +65,7 @@ export function Tokens(): JSX.Element {
 
                 <section>
                     <div className="col-span-2">
-                        <TokenValueGraph />
+                        <TokenValueGraph tokens={filteredTokens}/>
                     </div>
                 </section>
 

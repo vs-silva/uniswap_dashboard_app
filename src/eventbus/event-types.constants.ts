@@ -5,5 +5,6 @@ export const EventTypesConstants = Object.freeze({
     FILTER_TOKENS_DATA: 'filter-tokens-data',
     SELECT_TOKEN_DATA: 'select-token-data',
     UNSELECT_TOKEN_DATA: 'unselect-token-data',
-    UPDATE_TOKEN_SEARCH_REQUEST: 'update-token-search-request'
+    UPDATE_TOKEN_SEARCH_REQUEST: 'update-token-search-request',
+    REGISTER_GRAPH_CONTAINER: 'register-graph-container'
 });
