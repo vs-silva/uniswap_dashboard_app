@@ -11,6 +11,7 @@ export function Tokens(): JSX.Element {
 
     const dispatch = useDispatch();
 
+    // @ts-ignore
     const { tokensRequestPayload, filteredTokens } = useSelector(state => state.tokenStoreSlice);
 
     const {
@@ -46,9 +47,6 @@ export function Tokens(): JSX.Element {
         // @ts-ignore
         dispatch(updateTokensSearchRequest(payload));
     });
-
-
-
 
 
     return (

@@ -3,7 +3,7 @@ import {TokensOptionalRequestPayloadDTO} from "../store/tokens-store-slice/dtos/
 import Eventbus from "../eventbus";
 import {EventTypesConstants} from "../eventbus/event-types.constants";
 
-export function TokenOrderSearchSelector() :JSX.Element {
+export function TokenOrderBySearchSelector() :JSX.Element {
 
     const optionalRequestPayloadDTO :TokensOptionalRequestPayloadDTO = {};
 
