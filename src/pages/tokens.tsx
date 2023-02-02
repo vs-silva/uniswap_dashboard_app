@@ -24,7 +24,7 @@ export function Tokens(): JSX.Element {
     useEffect(() => {
         // @ts-ignore
         dispatch(getTokens(tokensRequestPayload))
-    },[]);
+    },[tokensRequestPayload]);
 
     // @ts-ignore
     Eventbus.on(EventTypesConstants.FILTER_TOKENS_DATA, (payload) => {
@@ -47,7 +47,6 @@ export function Tokens(): JSX.Element {
         // @ts-ignore
         dispatch(updateTokensSearchRequest(payload));
     });
-
 
     return (
         <div>

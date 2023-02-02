@@ -9,7 +9,6 @@ export function TokenOrderBySearchSelector() :JSX.Element {
 
     function generateOptions() {
         return Object.keys(OrderByConstants).map(
-
             (orderKey, index) => (
                 // @ts-ignore
                 <option key={orderKey} value={OrderByConstants[orderKey]}>{OrderByConstants[orderKey]}</option>)
@@ -23,7 +22,7 @@ export function TokenOrderBySearchSelector() :JSX.Element {
             >Order by</label>
 
             <select id="tokensOrderBySearchSelect"
-                className="form-select appearance-none block w-full px-3 py-1 text-base font-normal text-gray-700
+                className="form-select appearance-none block w-full px-3 py-1 text-base font-normal text-gray-700 cursor-pointer
             bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0
             focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" onChange={(event) => {
                 optionalRequestPayloadDTO.orderBy = event.target.value;
