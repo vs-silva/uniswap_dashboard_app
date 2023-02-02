@@ -5,6 +5,8 @@ import TokensStoreSlice, {getTokens} from "../store/tokens-store-slice";
 import {useEffect} from "react";
 import Eventbus from "../eventbus";
 import {EventTypesConstants} from "../eventbus/event-types.constants";
+import {TokenSearch} from "../components/token-search";
+import {TokenValueGraph} from "../components/token-value-graph";
 
 export function Tokens(): JSX.Element {
 
@@ -12,12 +14,18 @@ export function Tokens(): JSX.Element {
 
     // @ts-ignore
     const { tokensRequestPayload, filteredTokens } = useSelector(state => state.tokenStoreSlice);
-    const { updateFilteredTokens, selectSpecificToken, restoreFilteredTokens } = TokensStoreSlice.actions;
+
+    const {
+        updateFilteredTokens,
+        selectSpecificToken,
+        restoreFilteredTokens,
+        updateTokensSearchRequest
+    } = TokensStoreSlice.actions;
 
     useEffect(() => {
         // @ts-ignore
         dispatch(getTokens(tokensRequestPayload))
-    },[]);
+    },[tokensRequestPayload]);
 
     // @ts-ignore
     Eventbus.on(EventTypesConstants.FILTER_TOKENS_DATA, (payload) => {
@@ -35,24 +43,36 @@ export function Tokens(): JSX.Element {
         dispatch(restoreFilteredTokens());
     });
 
+    // @ts-ignore
+    Eventbus.on(EventTypesConstants.UPDATE_TOKEN_SEARCH_REQUEST, (payload) => {
+        // @ts-ignore
+        dispatch(updateTokensSearchRequest(payload));
+    });
 
+    return (
+        <div>
 
+            <section>
+                <TokenSearch />
+            </section>
 
+            <div className="grid grid-rows-3 grid-flow-col gap-4">
 
+                <aside className="row-span-3">
+                    <TokenSelector tokens={filteredTokens} />
+                </aside>
 
-    return (<div className="grid grid-rows-3 grid-flow-col gap-4">
-        <aside className="row-span-3">
-            <TokenSelector tokens={filteredTokens} />
-        </aside>
+                <section>
+                    <div className="col-span-2">
+                        <TokenValueGraph />
+                    </div>
+                </section>
 
-        <section>
-            <div className="col-span-2">2</div>
-        </section>
+                <section className="row-span-2 col-span-2">
+                    <TokenTable tokens={filteredTokens}/>
+                </section>
 
-        <section className="row-span-2 col-span-2">
-            <TokenTable tokens={filteredTokens}/>
-        </section>
-
+            </div>
 
     </div>);
 }
