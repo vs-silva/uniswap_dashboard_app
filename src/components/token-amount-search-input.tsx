@@ -6,7 +6,9 @@ import {useState} from "react";
 export function TokenAmountSearchInput(): JSX.Element {
 
     const optionalRequestPayloadDTO :TokensOptionalRequestPayloadDTO = {};
-    const [amountValue, setAmountValue] = useState(1);
+    const [amountValue, setAmountValue] = useState(10);
+    const minAmount = 1;
+    const maxAmount = 25;
 
     return (
         <div className="mb-3">
@@ -19,17 +21,19 @@ export function TokenAmountSearchInput(): JSX.Element {
           placeholder="insert token(s) quantity"
           value={amountValue}
           type="number"
-          min="1"
-          max="25"
+          min={minAmount}
+          max={maxAmount}
           onChange={(event) => {
               event.preventDefault();
 
-              setAmountValue(() => {
-                  return (parseInt(event.target.value) > 25) ? 25 : parseInt(event.target.value);
-              });
+              const value:number = parseInt(event.target.value) || minAmount;
+              const result = (value > maxAmount) ? maxAmount : value;
 
-              optionalRequestPayloadDTO.amount = amountValue;
+              optionalRequestPayloadDTO.amount = result;
               optionalRequestPayloadDTO.skip = 0;
+
+              setAmountValue(result);
+
               Eventbus.emit(EventTypesConstants.UPDATE_TOKEN_SEARCH_REQUEST,optionalRequestPayloadDTO);
           }}
           className="form-control block w-full px-2 py-1.5
