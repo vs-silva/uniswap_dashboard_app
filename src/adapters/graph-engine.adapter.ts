@@ -1,11 +1,11 @@
 import {GraphDrivenPort} from "../domain/graph/ports/graph-driven.port";
-import {Chart, registerables} from "chart.js";
+import {Chart, ChartTypeRegistry, registerables} from "chart.js";
 
 export function GraphEngineAdapter(): GraphDrivenPort {
 
     Chart.register(...registerables);
 
-    let graph: unknown;
+    let graph: Chart<keyof ChartTypeRegistry, never[], never> | null = null;
 
     function createGraph(containerID: string, graphType: string) {
 
@@ -33,6 +33,15 @@ export function GraphEngineAdapter(): GraphDrivenPort {
                     y: {
                         beginAtZero: true
                     }
+                },
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Tokens Graph'
+                    },
                 }
             }
         });
@@ -46,6 +55,7 @@ export function GraphEngineAdapter(): GraphDrivenPort {
         }
 
         clearGraph();
+
         // @ts-ignore
         graph.data = generateGraphData(data);
 
@@ -64,15 +74,13 @@ export function GraphEngineAdapter(): GraphDrivenPort {
             }]
         };
 
-        result.datasets[0].label = 'Tokens Graph';
-
         for (const item of data) {
             // @ts-ignore
             result.labels.push(`${item.name} ( ${item.symbol} )`);
             // @ts-ignore
             result.datasets[0].data.push(item.totalValueLockedInUSD);
             // @ts-ignore
-            result.datasets[0].backgroundColor.push(generateRandomColor());
+            result.datasets[0].backgroundColor.push(generateRandomRGBAColor());
         }
 
         return result;
@@ -83,39 +91,22 @@ export function GraphEngineAdapter(): GraphDrivenPort {
             return;
         }
 
-        // @ts-ignore
         graph.data.labels = [];
-        // @ts-ignore
         graph.data.datasets = [];
-        // @ts-ignore
         graph.update();
     }
 
-
-
-    function generateRandomColor(): string {
-        const letters:string = '0123456789ABCDEF';
-        let color:string = '#';
-
-        for (let i:number = 0; i < 6; i++) {
-            color += letters[Math.floor(Math.random() * 16)];
-        }
-
-        return color;
+    function generateRandomRGBAColor(): string {
+        const alpha = Math.random().toFixed(1);
+        return `rgba(${generateRandomValueForColor()},${generateRandomValueForColor()},${generateRandomValueForColor()},${alpha})`;
     }
 
-
-    // @ts-ignore
-    function destroyGraph(graph) {
-        console.log('HERE',graph)
-        graph.destroy();
+    function generateRandomValueForColor():number {
+        return  Math.round((Math.random()*255));
     }
-
-
 
     return {
         createGraph,
-        updateGraph,
-        destroyGraph
+        updateGraph
     };
 }

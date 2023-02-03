@@ -8,7 +8,6 @@ import {TokensOptionalRequestPayloadDTO} from "./dtos/tokens-optional-request-pa
 import Graph from "../../domain/graph";
 import {GraphTypeConstants} from "../../domain/graph/business/constants/graph-type.constants";
 
-
 const initialState: object = {
     tokensRequestPayload: <CryptoTokensRequestParameterDTO> {
         name:'',
@@ -18,7 +17,7 @@ const initialState: object = {
         skip: 0
     },
     tokens: <CryptoTokenDTO[]>[],
-    filteredTokens: <CryptoTokenDTO[]>[]
+    filteredTokens: <CryptoTokenDTO[]>[],
 };
 
 export const getTokens = createAsyncThunk(
@@ -59,6 +58,18 @@ function updateTokensSearchRequest(state, action: PayloadAction<TokensOptionalRe
     state.tokensRequestPayload = Object.assign(target, state.tokensRequestPayload, action.payload);
 }
 
+// @ts-ignore
+function createGraph(state, action:PayloadAction<string>):void {
+    Graph.createGraph({
+        canvasContainerID: action.payload,
+        graphType: GraphTypeConstants.BAR
+    });
+}
+
+// @ts-ignore
+function updateGraph(state, action:PayloadAction<CryptoTokenDTO[]>): void {
+    Graph.updateGraph(action.payload);
+}
 
 export default createSlice({
     name: 'tokens-store-slice',
@@ -67,7 +78,9 @@ export default createSlice({
         updateFilteredTokens,
         selectSpecificToken,
         restoreFilteredTokens,
-        updateTokensSearchRequest
+        updateTokensSearchRequest,
+        createGraph,
+        updateGraph
     },
     extraReducers: builderProcessor
 });

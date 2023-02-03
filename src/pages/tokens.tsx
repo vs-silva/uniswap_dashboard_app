@@ -19,7 +19,9 @@ export function Tokens(): JSX.Element {
         updateFilteredTokens,
         selectSpecificToken,
         restoreFilteredTokens,
-        updateTokensSearchRequest
+        updateTokensSearchRequest,
+        createGraph,
+        updateGraph
     } = TokensStoreSlice.actions;
 
     useEffect(() => {
@@ -47,6 +49,18 @@ export function Tokens(): JSX.Element {
     Eventbus.on(EventTypesConstants.UPDATE_TOKEN_SEARCH_REQUEST, (payload) => {
         // @ts-ignore
         dispatch(updateTokensSearchRequest(payload));
+    });
+
+    // @ts-ignore
+    Eventbus.on(EventTypesConstants.REGISTER_GRAPH_CONTAINER, (payload) => {
+        // @ts-ignore
+        dispatch(createGraph(payload));
+    });
+
+    // @ts-ignore
+    Eventbus.on(EventTypesConstants.UPDATE_GRAPH_DATA, (payload) => {
+        // @ts-ignore
+        dispatch(updateGraph(payload));
     });
 
 

@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
-import Graph from "../domain/graph";
 import {CryptoTokenDTO} from "../domain/crypto-tokens/business/dtos/crypto-token.dto";
+import Eventbus from "../eventbus";
+import {EventTypesConstants} from "../eventbus/event-types.constants";
 
 export function TokenValueGraph(props: { tokens: CryptoTokenDTO[]; }): JSX.Element {
 
@@ -8,14 +9,13 @@ export function TokenValueGraph(props: { tokens: CryptoTokenDTO[]; }): JSX.Eleme
     const {tokens} = props;
 
     useEffect(() => {
-        Graph.createGraph({
-            canvasContainerID: containerID
-        });
+        Eventbus.emit(EventTypesConstants.REGISTER_GRAPH_CONTAINER, containerID);
     },[]);
 
     useEffect(() => {
-        Graph.updateGraph(tokens)
+        Eventbus.emit(EventTypesConstants.UPDATE_GRAPH_DATA, tokens);
     },[tokens]);
+
 
     return (<div className="w-full">
         <canvas id={containerID} />
