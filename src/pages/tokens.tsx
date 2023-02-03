@@ -73,12 +73,12 @@ export function Tokens(): JSX.Element {
 
             <div className="grid grid-rows-3 grid-flow-col gap-4">
 
-                <aside className="row-span-3">
+                <aside className="row-span-3 pt-6">
                     <TokenSelector tokens={filteredTokens} />
                 </aside>
 
-                <section>
-                    <div className="col-span-2">
+                <section className="col-span-2">
+                    <div className="w-full">
                         <TokenValueGraph tokens={filteredTokens}/>
                     </div>
                 </section>

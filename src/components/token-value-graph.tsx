@@ -16,7 +16,6 @@ export function TokenValueGraph(props: { tokens: CryptoTokenDTO[]; }): JSX.Eleme
         Eventbus.emit(EventTypesConstants.UPDATE_GRAPH_DATA, tokens);
     },[tokens]);
 
-
     return (<div className="w-full">
         <canvas id={containerID} />
     </div>);

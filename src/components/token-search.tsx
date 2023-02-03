@@ -6,7 +6,7 @@ import {TokenOrderDirectionButton} from "./token-order-direction-button";
 export function TokenSearch(): JSX.Element {
 
     return (
-        <div className="py-6 shadow-lg rounded-sm border border-gray-200 mb-10">
+        <div className="px-4 py-6 shadow-lg rounded-sm border border-gray-200 mb-10">
 
             <div className="flex">
                 <div className="w-1/4 h-12 mr-2"><TokenNameSearchInput /></div>
