@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 export function Navigation(): JSX.Element {
 
     return (
-        <div className="container-fluid w-full flex flex-wrap items-center justify-between px-6">
+        <div className="container-fluid w-full flex flex-wrap items-center justify-between py-8">
             <nav className="bg-grey-light rounded-md w-full" aria-label="breadcrumb" data-testid="nav">
                 {
                     Object.entries(RouterPaths).map(([routeKey, routePath], index) => (

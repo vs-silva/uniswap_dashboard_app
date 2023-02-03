@@ -10,7 +10,7 @@ export function TokenOrderDirectionButton(): JSX.Element {
     const options = Object.values(OrderDirectionConstant);
     const [direction, setDirection] = useState(OrderDirectionConstant.DESCENDING);
 
-    return (<div className="mb-3 xl:w-96">
+    return (<div className="mb-3">
 
         <label htmlFor="tokensOrderDirection" className="form-label inline-block mb-2 text-gray-700 text-sm"
         >Direction</label>
@@ -19,6 +19,7 @@ export function TokenOrderDirectionButton(): JSX.Element {
             id="tokensOrderDirection"
             className="bg-white hover:bg-gray-100 text-gray-700 font-normal text-base uppercase py-1 px-4 border border-gray-300 rounded w-full"
             onClick={(event) => {
+                event.preventDefault();
                 for (const option of options) {
                     if(option.toLocaleLowerCase() !== direction.toLocaleLowerCase())
                     {

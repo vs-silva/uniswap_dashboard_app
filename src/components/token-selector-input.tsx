@@ -16,6 +16,7 @@ export function TokenSelectorInput(): JSX.Element {
             placeholder="filter tokens"
             type="text"
             onChange={(event) => {
+                event.preventDefault();
                 optionalRequestPayloadDTO.name = event.target.value;
                 Eventbus.emit(EventTypesConstants.FILTER_TOKENS_DATA, optionalRequestPayloadDTO)
             }}

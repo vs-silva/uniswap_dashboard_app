@@ -7,7 +7,7 @@ export function TokenAmountSearchInput(): JSX.Element {
     const optionalRequestPayloadDTO :TokensOptionalRequestPayloadDTO = {};
 
     return (
-        <div className="mb-3 xl:w-96">
+        <div className="mb-3">
 
         <label htmlFor="tokensAmountSearchInput" className="form-label inline-block mb-2 text-gray-700 text-sm"
         >Quantity</label>
@@ -19,6 +19,7 @@ export function TokenAmountSearchInput(): JSX.Element {
           min="1"
           max="100"
           onChange={(event) => {
+              event.preventDefault();
               optionalRequestPayloadDTO.amount = parseInt(event.target.value);
               Eventbus.emit(EventTypesConstants.UPDATE_TOKEN_SEARCH_REQUEST,optionalRequestPayloadDTO);
           }}

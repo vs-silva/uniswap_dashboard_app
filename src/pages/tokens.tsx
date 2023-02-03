@@ -63,6 +63,29 @@ export function Tokens(): JSX.Element {
         dispatch(updateGraph(payload));
     });
 
+    // @ts-ignore
+    Eventbus.on(EventTypesConstants.UPDATE_PAGINATION, (payload) => {
+        // @ts-ignore
+
+        if(payload === 'next') {
+            dispatch(updateTokensSearchRequest({
+                skip: (tokensRequestPayload.skip + tokensRequestPayload.amount)
+            }));
+            return;
+        }
+
+        if(payload === 'prev') {
+            const prevSkipResult = ((tokensRequestPayload.skip - tokensRequestPayload.amount) > 0 ) ? (tokensRequestPayload.skip - tokensRequestPayload.amount) : 0;
+            dispatch(updateTokensSearchRequest({
+                skip: prevSkipResult
+            }));
+            return;
+        }
+
+    });
+
+
+
 
     return (
         <div>

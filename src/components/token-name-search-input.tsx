@@ -7,7 +7,7 @@ export function TokenNameSearchInput(): JSX.Element {
     const optionalRequestPayloadDTO :TokensOptionalRequestPayloadDTO = {};
 
     return (
-        <div className="mb-3 xl:w-96">
+        <div className="mb-3">
 
         <label htmlFor="tokensNameSearchInput" className="form-label inline-block mb-2 text-gray-700 text-sm"
         >Search Tokens</label>
@@ -17,6 +17,7 @@ export function TokenNameSearchInput(): JSX.Element {
           placeholder="search token by name"
           type="text"
           onChange={(event) => {
+              event.preventDefault();
               optionalRequestPayloadDTO.name = event.target.value;
               Eventbus.emit(EventTypesConstants.UPDATE_TOKEN_SEARCH_REQUEST,optionalRequestPayloadDTO);
           }}
