@@ -1,19 +1,20 @@
 import {GraphDrivenPort} from "../domain/graph/ports/graph-driven.port";
 import {Chart, ChartTypeRegistry, registerables} from "chart.js";
+import {GraphUpdateDTO} from "../domain/graph/business/dtos/graph-update.dto";
 
 export function GraphEngineAdapter(): GraphDrivenPort {
 
     Chart.register(...registerables);
 
-    let graph: Chart<keyof ChartTypeRegistry, never[], never> | null = null;
+    let graphInstance: Chart<keyof ChartTypeRegistry, never[], never> | null = null;
 
-    function createGraph(containerID: string, graphType: string) {
+    function createGraph(containerID: string, graphType: string): void {
 
-        if(graph) {
-            graph.destroy();
+        if(graphInstance) {
+            graphInstance.destroy();
         }
 
-        graph = new Chart(containerID, {
+        graphInstance = new Chart(containerID, {
             // @ts-ignore
             type: graphType,
             data: {
@@ -45,65 +46,20 @@ export function GraphEngineAdapter(): GraphDrivenPort {
                 }
             }
         });
+
     }
 
 
-    function updateGraph(data: object[]):void {
+    function updateGraph(data: GraphUpdateDTO):void {
 
-        if(!graph) {
+        if(!graphInstance || !graphInstance.canvas) {
             return;
         }
 
-        clearGraph();
-
-        // @ts-ignore
-        graph.data = generateGraphData(data);
-
-        // @ts-ignore
-        graph.update();
+        graphInstance.data = data;
+        graphInstance.update();
     }
 
-    function generateGraphData(data: object[]): object {
-
-        const result = {
-            labels: [],
-            datasets: [{
-                label: '',
-                data: [],
-                backgroundColor: []
-            }]
-        };
-
-        for (const item of data) {
-            // @ts-ignore
-            result.labels.push(`${item.name} ( ${item.symbol} )`);
-            // @ts-ignore
-            result.datasets[0].data.push(item.totalValueLockedInUSD);
-            // @ts-ignore
-            result.datasets[0].backgroundColor.push(generateRandomRGBAColor());
-        }
-
-        return result;
-    }
-
-    function clearGraph():void {
-        if(!graph) {
-            return;
-        }
-
-        graph.data.labels = [];
-        graph.data.datasets = [];
-        graph.update();
-    }
-
-    function generateRandomRGBAColor(): string {
-        const alpha = Math.random().toFixed(1);
-        return `rgba(${generateRandomValueForColor()},${generateRandomValueForColor()},${generateRandomValueForColor()},${alpha})`;
-    }
-
-    function generateRandomValueForColor():number {
-        return  Math.round((Math.random()*255));
-    }
 
     return {
         createGraph,

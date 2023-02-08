@@ -2,6 +2,7 @@ import type {GraphDriverPort} from "./ports/graph-driver.port";
 import type {GraphCreateDTO} from "./business/dtos/graph-create.dto";
 import {GraphDrivenPort} from "./ports/graph-driven.port";
 import {GraphTypeConstants} from "./business/constants/graph-type.constants";
+import {GraphDataMapperService} from "./business/services/graph-data-mapper/graph-data-mapper.service";
 
 export function GraphService(engine: GraphDrivenPort): GraphDriverPort {
 
@@ -11,10 +12,9 @@ export function GraphService(engine: GraphDrivenPort): GraphDriverPort {
     }
 
     function updateGraph(data: object[]):void {
-        engine.updateGraph(data);
+        const graphData = GraphDataMapperService.mapCryptoTokensToGraphData(data);
+        engine.updateGraph(graphData);
     }
-
-
 
     return {
         createGraph,

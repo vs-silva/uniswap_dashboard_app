@@ -17,6 +17,6 @@ export function TokenValueGraph(props: { tokens: CryptoTokenDTO[]; }): JSX.Eleme
     },[tokens]);
 
     return (<div className="w-full">
-        <canvas id={containerID} />
+        <canvas id={containerID}/>
     </div>);
 }

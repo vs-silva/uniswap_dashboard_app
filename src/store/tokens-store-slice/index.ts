@@ -1,12 +1,14 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {CryptoTokenDTO} from "../../domain/crypto-tokens/business/dtos/crypto-token.dto";
-import {CryptoTokensRequestParameterDTO} from "../../domain/crypto-tokens/business/dtos/crypto-tokens-request-parameter.dto";
+import type {CryptoTokenDTO} from "../../domain/crypto-tokens/business/dtos/crypto-token.dto";
+import type {CryptoTokensRequestParameterDTO} from "../../domain/crypto-tokens/business/dtos/crypto-tokens-request-parameter.dto";
 import CryptoTokens from "../../domain/crypto-tokens";
 import {OrderByConstants} from "../../domain/crypto-tokens/business/constants/order-by.constants";
 import {OrderDirectionConstant} from "../../domain/crypto-tokens/business/constants/order-direction.constant";
-import {TokensOptionalRequestPayloadDTO} from "./dtos/tokens-optional-request-payload.dto";
+import type {TokensOptionalRequestPayloadDTO} from "./dtos/tokens-optional-request-payload.dto";
 import Graph from "../../domain/graph";
 import {GraphTypeConstants} from "../../domain/graph/business/constants/graph-type.constants";
+import type {GraphUpdateDTO} from "../../domain/graph/business/dtos/graph-update.dto";
+import type {GraphUpdateDatasetDTO} from "../../domain/graph/business/dtos/graph-update-dataset.dto";
 
 const initialState: object = {
     tokensRequestPayload: <CryptoTokensRequestParameterDTO> {
@@ -70,6 +72,7 @@ function createGraph(state, action:PayloadAction<string>):void {
 function updateGraph(state, action:PayloadAction<CryptoTokenDTO[]>): void {
     Graph.updateGraph(action.payload);
 }
+
 
 export default createSlice({
     name: 'tokens-store-slice',

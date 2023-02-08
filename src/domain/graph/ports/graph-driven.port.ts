@@ -1,5 +1,6 @@
+import type {GraphUpdateDTO} from "../business/dtos/graph-update.dto";
 
 export interface GraphDrivenPort {
-    createGraph(containerID: string, graphType: string): unknown;
-    updateGraph(data: object[]): void;
+    createGraph(containerID: string, graphType: string): void;
+    updateGraph(data: GraphUpdateDTO): void;
 }
