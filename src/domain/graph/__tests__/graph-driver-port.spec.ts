@@ -3,7 +3,6 @@ import Graph from "../index";
 import type {GraphCreateDTO} from "../business/dtos/graph-create.dto";
 import {faker} from "@faker-js/faker";
 import {CryptoTokenDTO} from "../../crypto-tokens/business/dtos/crypto-token.dto";
-import { JSDOM } from 'jsdom';
 
 describe('Graph Tests', () => {
 
