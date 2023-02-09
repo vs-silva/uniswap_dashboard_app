@@ -1,11 +1,14 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {CryptoTokenDTO} from "../../domain/crypto-tokens/business/dtos/crypto-token.dto";
-import {CryptoTokensRequestParameterDTO} from "../../domain/crypto-tokens/business/dtos/crypto-tokens-request-parameter.dto";
+import type {CryptoTokenDTO} from "../../domain/crypto-tokens/business/dtos/crypto-token.dto";
+import type {CryptoTokensRequestParameterDTO} from "../../domain/crypto-tokens/business/dtos/crypto-tokens-request-parameter.dto";
 import CryptoTokens from "../../domain/crypto-tokens";
 import {OrderByConstants} from "../../domain/crypto-tokens/business/constants/order-by.constants";
 import {OrderDirectionConstant} from "../../domain/crypto-tokens/business/constants/order-direction.constant";
-import {TokensOptionalRequestPayloadDTO} from "./dtos/tokens-optional-request-payload.dto";
-
+import type {TokensOptionalRequestPayloadDTO} from "./dtos/tokens-optional-request-payload.dto";
+import Graph from "../../domain/graph";
+import {GraphTypeConstants} from "../../domain/graph/business/constants/graph-type.constants";
+import type {GraphUpdateDTO} from "../../domain/graph/business/dtos/graph-update.dto";
+import type {GraphUpdateDatasetDTO} from "../../domain/graph/business/dtos/graph-update-dataset.dto";
 
 const initialState: object = {
     tokensRequestPayload: <CryptoTokensRequestParameterDTO> {
@@ -16,7 +19,7 @@ const initialState: object = {
         skip: 0
     },
     tokens: <CryptoTokenDTO[]>[],
-    filteredTokens: <CryptoTokenDTO[]>[]
+    filteredTokens: <CryptoTokenDTO[]>[],
 };
 
 export const getTokens = createAsyncThunk(
@@ -36,27 +39,39 @@ function builderProcessor(builder) {
 }
 
 // @ts-ignore
-function updateFilteredTokens(state, action: PayloadAction<TokensOptionalRequestPayloadDTO>) {
+function updateFilteredTokens(state, action: PayloadAction<TokensOptionalRequestPayloadDTO>):void {
     // @ts-ignore
     state.filteredTokens = state.tokens.filter((token:CryptoTokenDTO) => token.name.toLowerCase().includes(action.payload.name.toLowerCase()));
 }
 
 // @ts-ignore
-function selectSpecificToken(state, action:  PayloadAction<string>) {
+function selectSpecificToken(state, action:  PayloadAction<string>):void {
     state.filteredTokens = state.tokens.filter((token:CryptoTokenDTO) => token.id === action.payload);
 }
 
 // @ts-ignore
-function restoreFilteredTokens(state) {
+function restoreFilteredTokens(state):void {
     state.filteredTokens = state.tokens;
 }
 
 // @ts-ignore
-function updateTokensSearchRequest(state, action: PayloadAction<TokensOptionalRequestPayloadDTO>) {
+function updateTokensSearchRequest(state, action: PayloadAction<TokensOptionalRequestPayloadDTO>):void {
     const target = {};
     state.tokensRequestPayload = Object.assign(target, state.tokensRequestPayload, action.payload);
 }
 
+// @ts-ignore
+function createGraph(state, action:PayloadAction<string>):void {
+    Graph.createGraph({
+        canvasContainerID: action.payload,
+        graphType: GraphTypeConstants.BAR
+    });
+}
+
+// @ts-ignore
+function updateGraph(state, action:PayloadAction<CryptoTokenDTO[]>): void {
+    Graph.updateGraph(action.payload);
+}
 
 
 export default createSlice({
@@ -66,7 +81,9 @@ export default createSlice({
         updateFilteredTokens,
         selectSpecificToken,
         restoreFilteredTokens,
-        updateTokensSearchRequest
+        updateTokensSearchRequest,
+        createGraph,
+        updateGraph
     },
     extraReducers: builderProcessor
 });
