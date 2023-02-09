@@ -19,7 +19,9 @@ export function Tokens(): JSX.Element {
         updateFilteredTokens,
         selectSpecificToken,
         restoreFilteredTokens,
-        updateTokensSearchRequest
+        updateTokensSearchRequest,
+        createGraph,
+        updateGraph
     } = TokensStoreSlice.actions;
 
     useEffect(() => {
@@ -49,6 +51,39 @@ export function Tokens(): JSX.Element {
         dispatch(updateTokensSearchRequest(payload));
     });
 
+    // @ts-ignore
+    Eventbus.on(EventTypesConstants.REGISTER_GRAPH_CONTAINER, (payload) => {
+        // @ts-ignore
+        dispatch(createGraph(payload));
+    });
+
+    // @ts-ignore
+    Eventbus.on(EventTypesConstants.UPDATE_GRAPH_DATA, (payload) => {
+        // @ts-ignore
+        dispatch(updateGraph(payload));
+    });
+
+    // @ts-ignore
+    Eventbus.on(EventTypesConstants.UPDATE_PAGINATION, (payload) => {
+        // @ts-ignore
+
+        if(payload === 'next') {
+            dispatch(updateTokensSearchRequest({
+                skip: (tokensRequestPayload.skip + tokensRequestPayload.amount)
+            }));
+            return;
+        }
+
+        if(payload === 'prev') {
+            const prevSkipResult = ((tokensRequestPayload.skip - tokensRequestPayload.amount) > 0 ) ? (tokensRequestPayload.skip - tokensRequestPayload.amount) : 0;
+            dispatch(updateTokensSearchRequest({
+                skip: prevSkipResult
+            }));
+            return;
+        }
+
+    });
+
     return (
         <div>
 
@@ -58,13 +93,13 @@ export function Tokens(): JSX.Element {
 
             <div className="grid grid-rows-3 grid-flow-col gap-4">
 
-                <aside className="row-span-3">
+                <aside className="row-span-3 pt-6">
                     <TokenSelector tokens={filteredTokens} />
                 </aside>
 
-                <section>
-                    <div className="col-span-2">
-                        <TokenValueGraph />
+                <section className="col-span-2">
+                    <div className="w-full">
+                        <TokenValueGraph tokens={filteredTokens}/>
                     </div>
                 </section>
 

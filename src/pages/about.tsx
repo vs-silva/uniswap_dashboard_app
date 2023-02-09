@@ -26,19 +26,51 @@ export function About(): JSX.Element {
 
     // @ts-ignore
     return (<div>
-        <div className="flex justify-center">
-            <div className="flex flex-col md:flex-row md:max-w-xl rounded-lg bg-white shadow-lg">
-                <img
-                    className=" w-full h-96 md:h-auto object-cover md:w-48 rounded-t-lg md:rounded-none md:rounded-l-lg"
-                    src={user.thumbImage} alt="avatar"/>
-                <div className="p-6 flex flex-col justify-start">
-                    <h5 className="text-gray-900 text-xl font-medium mb-2">Fullstack Javascript Engineer</h5>
-                    <p className="text-gray-700 text-base mb-12">
-                        {user.name}
-                    </p>
-                    <a href={user.bio} target="_blank"
-                        className="text-center inline-block px-6 py-2.5 bg-gray-800 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-900 hover:shadow-lg focus:bg-gray-900 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-900 active:shadow-lg transition duration-150 ease-in-out">About Me
-                    </a>
+        <div
+            className="relative max-w-md mx-auto md:max-w-2xl mt-6 min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-xl mt-16">
+            <div className="px-6 pt-4">
+                <div className="flex flex-wrap justify-center">
+                    <div className="w-full flex justify-center">
+                        <div className="relative">
+                            <img
+                                src={user.thumbImage}
+                                className="shadow-xl rounded-full align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-[150px]"/>
+                        </div>
+                    </div>
+                    <div className="w-full text-center mt-20">
+                        <div className="flex justify-center lg:pt-4 pt-8 pb-0">
+                            <div className="p-3 text-center">
+                                <a href="https://github.com/vs-silva/" target="_blank"
+                                ><img src="/icons8-github-48.png" alt="github icon" className="object-center" title="visit github projects"/>
+                                </a>
+                            </div>
+                            <div className="p-3 text-center">
+                                <a href="https://www.linkedin.com/in/vitalinosilva/" target="_blank"
+                                ><img src="/icons8-linkedin-48.png" alt="linkedin icon" className="object-center" title="visit linkedin profile"/>
+                                </a>
+                            </div>
+
+                            <div className="p-3 text-center">
+                                <a href="https://vitalinosilva.com/wp-content/uploads/2023/02/Resume-Vitalino-Silva.pdf" target="_blank"
+                                ><img src="/resumeIcon.png" alt="resume icon" className="object-center" title="download resume"/>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="text-center mt-2">
+                    <h3 className="text-2xl text-slate-700 font-bold leading-normal mb-1">{user.name}</h3>
+                    <div className="text-xs mt-0 mb-2 text-slate-400 font-bold uppercase">
+                        Fullstack Javascript Engineer
+                    </div>
+                </div>
+                <div className="mt-6 py-6 border-t border-slate-200 text-center">
+                    <div className="flex flex-wrap justify-center">
+                        <div className="w-full px-4">
+                            <p className="font-light leading-relaxed text-slate-600 mb-4">Vitalino Silva is a Fullstack Javascript engineer interested in software architecture and web development.</p>
+                            <a href={user.bio} target="_blank" className="font-normal text-slate-700 hover:text-slate-400">Bio</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
