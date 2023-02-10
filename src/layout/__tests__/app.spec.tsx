@@ -1,7 +1,6 @@
 import {render, within} from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import App from "../app";
-import React from "react";
 import {expect} from "vitest";
 
 describe('App Component Tests', () => {
