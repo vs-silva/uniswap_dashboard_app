@@ -7,7 +7,6 @@ import {EventTypesConstants} from "../../eventbus/event-types.constants";
 
 describe('Loader component tests', () => {
 
-
     it('loader should be displayed after SHOW_LOADER event has been emitted', () => {
 
         const { unmount, getByTestId} = render(<Loader />);
@@ -16,8 +15,6 @@ describe('Loader component tests', () => {
         expect(getByTestId('loader')).not.toBeNull();
         unmount();
     });
-
-
 
     it('loader should be hided after HIDE_LOADER event has been emitted', () => {
 

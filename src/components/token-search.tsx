@@ -1,5 +1,5 @@
 import {TokenNameSearchInput} from "./token-name-search-input";
-import {TokenAmountSearchInput} from "./token-amount-search-input";
+import {TokenAmountSearchInput} from "./token-amount-search-input/token-amount-search-input";
 import {TokenOrderBySearchSelector} from "./token-order-by-search-selector";
 import {TokenOrderDirectionButton} from "./token-order-direction-button";
 import {TokenPaginationSearchButtons} from "./token-pagination-search-buttons";
