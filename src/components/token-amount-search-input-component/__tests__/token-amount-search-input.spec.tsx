@@ -1,4 +1,4 @@
-import {describe, expect, vi} from "vitest";
+import {describe, expect} from "vitest";
 import {TokenAmountSearchInput} from "../token-amount-search-input";
 import {fireEvent, render} from "@testing-library/react";
 
@@ -15,28 +15,26 @@ describe('TokenAmountSearchInput component tests', () => {
 
     it('TokenAmountSearchInput max value should be 25', () => {
 
-        const { getByTestId } = render(<TokenAmountSearchInput />);
+        const { getByTestId, unmount } = render(<TokenAmountSearchInput />);
         const input = getByTestId('token-amount-search-input');
 
-        const payload: number = 30;
-        const expected: number = 25;
-
-        fireEvent.change(input, {target: {value: payload}});
+        fireEvent.change(input, {target: {value: 30}});
         // @ts-ignore
-        expect(parseInt(input.value)).toEqual(expected);
+        expect(parseInt(input.value)).toEqual(25);
+
+        unmount();
     });
 
     it('TokenAmountSearchInput min value should be 1', () => {
 
-        const { getByTestId } = render(<TokenAmountSearchInput />);
+        const { getByTestId, unmount } = render(<TokenAmountSearchInput />);
         const input = getByTestId('token-amount-search-input');
 
-        const payload: string = '-';
-        const expected: number = 1;
-
-        fireEvent.change(input, {target: {value: payload}});
+        fireEvent.change(input, {target: {value: '-'}});
         // @ts-ignore
-        expect(parseInt(input.value)).toEqual(expected);
+        expect(parseInt(input.value)).toEqual(1);
+
+        unmount();
     });
 
 });

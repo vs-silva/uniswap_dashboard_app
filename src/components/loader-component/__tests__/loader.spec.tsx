@@ -2,8 +2,8 @@ import {describe, it, expect} from "vitest";
 import React from "react";
 import {Loader} from "../loader";
 import {act, render, RenderOptions} from "@testing-library/react";
-import Eventbus from "../../eventbus";
-import {EventTypesConstants} from "../../eventbus/event-types.constants";
+import Eventbus from "../../../eventbus";
+import {EventTypesConstants} from "../../../eventbus/event-types.constants";
 
 describe('Loader component tests', () => {
 

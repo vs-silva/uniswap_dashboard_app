@@ -1,4 +1,4 @@
-import {RouterPaths} from "../router/router-paths";
+import {RouterPaths} from "../../router/router-paths";
 import {Link} from "react-router-dom";
 
 export function Navigation(): JSX.Element {
