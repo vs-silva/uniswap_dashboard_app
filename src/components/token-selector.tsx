@@ -1,4 +1,4 @@
-import {TokenSelectorInput} from "./token-selector-input";
+import {TokenSelectorInput} from "./token-selector-input-component/token-selector-input";
 import {TokenSelectorList} from "./token-selector-list";
 import {CryptoTokenDTO} from "../domain/crypto-tokens/business/dtos/crypto-token.dto";
 
