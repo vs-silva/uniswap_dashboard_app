@@ -15,8 +15,8 @@ export function TokenTable(props: { tokens: any; }): JSX.Element {
 
         <div className="overflow-x-auto p-3">
             <table className="table-auto w-full">
-                <thead className="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
-                    <tr>
+                <thead className="text-xs font-semibold uppercase text-gray-400 bg-gray-50" data-testid="token-table-head">
+                    <tr data-testid="token-table-head-row">
                         {
                             Object.entries(tokens[0]).map((field, index) => {
 
@@ -34,11 +34,11 @@ export function TokenTable(props: { tokens: any; }): JSX.Element {
                         }
                     </tr>
                 </thead>
-                <tbody className="text-sm divide-y divide-gray-100">
+                <tbody className="text-sm divide-y divide-gray-100" data-testid="token-table-body">
                 {
                     // @ts-ignore
                     tokens.map((token, index) => {
-                        return(<tr id={token.id} key={index} className="ps-2">
+                        return(<tr id={token.id} key={index} className="ps-2" data-testid={`token-table-body-row-${index}`}>
 
                             <td className="p-2">
                                 <div className="text-center">{token.name}</div>

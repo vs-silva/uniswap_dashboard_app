@@ -1,7 +1,7 @@
 import {describe, expect} from "vitest";
 import {fireEvent, render} from "@testing-library/react";
 import {faker} from "@faker-js/faker";
-import {CryptoTokenDTO} from "../../../domain/crypto-tokens/business/dtos/crypto-token.dto";
+import type {CryptoTokenDTO} from "../../../domain/crypto-tokens/business/dtos/crypto-token.dto";
 import {TokenSelectorList} from "../token-selector-list";
 
 describe('TokenSelectorList  component tests', () => {

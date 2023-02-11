@@ -3,7 +3,7 @@ import {fireEvent, getByText, render} from "@testing-library/react";
 import {TokenOrderDirectionButton} from "../token-order-direction-button";
 import {OrderDirectionConstant} from "../../../domain/crypto-tokens/business/constants/order-direction.constant";
 
-describe('const {getByTestId, container, unmount} = render component tests', () => {
+describe('TokenOrderDirectionButton component tests', () => {
 
     it('TokenOrderDirectionButton should render properly', () => {
         const {getByTestId, container, unmount} = render(<TokenOrderDirectionButton />);
