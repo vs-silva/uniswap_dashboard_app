@@ -1,7 +1,7 @@
 import {TokenNameSearchInput} from "./token-name-search-input-component/token-name-search-input";
 import {TokenAmountSearchInput} from "./token-amount-search-input-component/token-amount-search-input";
 import {TokenOrderBySearchSelector} from "./token-order-by-search-selector-component/token-order-by-search-selector";
-import {TokenOrderDirectionButton} from "./token-order-direction-button";
+import {TokenOrderDirectionButton} from "./tokens-order-direction-button-component/token-order-direction-button";
 import {TokenPaginationSearchButtons} from "./token-pagination-search-buttons";
 
 export function TokenSearch(): JSX.Element {
