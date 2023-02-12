@@ -6,7 +6,7 @@ import {useEffect} from "react";
 import Eventbus from "../eventbus";
 import {EventTypesConstants} from "../eventbus/event-types.constants";
 import {TokenSearch} from "../components/token-search-component/token-search";
-import {TokenValueGraph} from "../components/token-value-graph";
+import {TokenValueGraph} from "../components/token-value-graph-component/token-value-graph";
 
 export function Tokens(): JSX.Element {
 
