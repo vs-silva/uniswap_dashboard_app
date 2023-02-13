@@ -9,4 +9,4 @@ export const EventTypesConstants = Object.freeze({
     REGISTER_GRAPH_CONTAINER: 'register-graph-container',
     UPDATE_GRAPH_DATA: 'update-graph-data',
     UPDATE_PAGINATION: 'update-pagination'
-});
+} as const);
