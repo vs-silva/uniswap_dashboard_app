@@ -1,12 +1,12 @@
-import {TokenSelector} from "../components/token-selector";
-import {TokenTable} from "../components/token-table";
+import {TokenSelector} from "../components/token-selector-component/token-selector";
+import {TokenTable} from "../components/token-table-component/token-table";
 import {useDispatch, useSelector} from "react-redux";
 import TokensStoreSlice, {getTokens} from "../store/tokens-store-slice";
 import {useEffect} from "react";
 import Eventbus from "../eventbus";
 import {EventTypesConstants} from "../eventbus/event-types.constants";
-import {TokenSearch} from "../components/token-search";
-import {TokenValueGraph} from "../components/token-value-graph";
+import {TokenSearch} from "../components/token-search-component/token-search";
+import {TokenValueGraph} from "../components/token-value-graph-component/token-value-graph";
 
 export function Tokens(): JSX.Element {
 

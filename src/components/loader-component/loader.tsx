@@ -1,6 +1,6 @@
 import {useState} from "react";
-import Eventbus from "../eventbus";
-import {EventTypesConstants} from "../eventbus/event-types.constants";
+import Eventbus from "../../eventbus";
+import {EventTypesConstants} from "../../eventbus/event-types.constants";
 
 export function Loader(): JSX.Element {
 
