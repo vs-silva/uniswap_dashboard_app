@@ -56,6 +56,7 @@ export function GraphEngineAdapter(): GraphDrivenPort {
             return;
         }
 
+        // @ts-ignore
         graphInstance.data = data;
         graphInstance.update();
     }

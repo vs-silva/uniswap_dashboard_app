@@ -79,31 +79,30 @@ export function Tokens(): JSX.Element {
             dispatch(updateTokensSearchRequest({
                 skip: prevSkipResult
             }));
-            return;
         }
 
     });
 
     return (
-        <div>
+        <div data-testid="tokens-page-container">
 
-            <section>
+            <section data-testid="tokens-page-search-container">
                 <TokenSearch />
             </section>
 
             <div className="grid grid-rows-3 grid-flow-col gap-4">
 
-                <aside className="row-span-3 pt-6">
+                <aside className="row-span-3 pt-6" data-testid="tokens-page-filter-container">
                     <TokenSelector tokens={filteredTokens} />
                 </aside>
 
-                <section className="col-span-2">
+                <section className="col-span-2" data-testid="tokens-page-graph-container">
                     <div className="w-full">
                         <TokenValueGraph tokens={filteredTokens}/>
                     </div>
                 </section>
 
-                <section className="row-span-2 col-span-2">
+                <section className="row-span-2 col-span-2" data-testid="tokens-page-table-container">
                     <TokenTable tokens={filteredTokens}/>
                 </section>
 
