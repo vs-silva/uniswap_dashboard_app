@@ -25,7 +25,7 @@ export function About(): JSX.Element {
 
 
     // @ts-ignore
-    return (<div>
+    return (<div data-testid="about-page-container">
         <div
             className="relative max-w-md mx-auto md:max-w-2xl mt-6 min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-xl mt-16">
             <div className="px-6 pt-4">

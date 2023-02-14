@@ -27,6 +27,8 @@ describe('Tokens page tests', () => {
         unmount();
     });
 
+    //TODO: Fix these tests. pass handlers via props so we can better test the page component.
+
     it('Tokens page should contain handler for Tokens filter event', () => {
 
         const {unmount} = render(<Provider store={store}><Tokens /></Provider>);
@@ -59,6 +61,36 @@ describe('Tokens page tests', () => {
 
         act(() => {
             Eventbus.emit(EventTypesConstants.UNSELECT_TOKEN_DATA);
+        });
+
+        unmount();
+    });
+
+    it('Tokens page should contain handler for token search update event', () => {
+
+        const {unmount} = render(<Provider store={store}><Tokens /></Provider>);
+
+        const requestPayload: TokensOptionalRequestPayloadDTO = {
+            amount: parseInt(faker.random.numeric(2))
+        };
+
+        act(() => {
+            Eventbus.emit(EventTypesConstants.UPDATE_TOKEN_SEARCH_REQUEST, requestPayload);
+        });
+
+        unmount();
+    });
+
+    it('Tokens page should contain handler for tokens pagination update event', () => {
+
+        const {unmount} = render(<Provider store={store}><Tokens /></Provider>);
+
+        act(() => {
+            Eventbus.emit(EventTypesConstants.UPDATE_PAGINATION, 'prev');
+        });
+
+        act(() => {
+            Eventbus.emit(EventTypesConstants.UPDATE_PAGINATION, 'next');
         });
 
         unmount();
